@@ -1,0 +1,7 @@
+server/static/
+server/collab-editor
+collab-editor
+frontend/node_modules/
+frontend/dist/
+*.test.bin
+.env
