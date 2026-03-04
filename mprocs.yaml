@@ -1,0 +1,7 @@
+procs:
+  server:
+    cmd: ["go", "run", "."]
+    cwd: server
+  frontend:
+    cmd: ["npm", "run", "dev"]
+    cwd: frontend
