@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>collab-editor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1e1e1e;
+      color: #ccc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 12px;
+      background: #2d2d2d;
+      border-bottom: 1px solid #3c3c3c;
+      flex-shrink: 0;
+    }
+
+    #toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .logo {
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+
+    .separator {
+      color: #555;
+    }
+
+    #session-id {
+      color: #888;
+      font-family: monospace;
+    }
+
+    #status {
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+    }
+    #status.ok {
+      background: #1a3a2a;
+      color: #4ec994;
+      border: 1px solid #2d6b4a;
+    }
+    #status.error {
+      background: #3a1a1a;
+      color: #e07070;
+      border: 1px solid #6b2d2d;
+    }
+
+    #peers {
+      color: #888;
+      font-size: 11px;
+    }
+
+    #share-btn {
+      padding: 4px 10px;
+      background: #0e639c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.15s;
+    }
+    #share-btn:hover { background: #1177bb; }
+
+    #editor {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* OT indicator — small dot animates when syncing */
+    #sync-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ec994;
+      flex-shrink: 0;
+    }
+    #sync-indicator.syncing {
+      animation: pulse 0.8s ease-in-out infinite;
+      background: #f0a040;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <div id="toolbar-left">
+      <span class="logo">collab-editor</span>
+      <span class="separator">/</span>
+      <span id="session-id"></span>
+      <div id="sync-indicator"></div>
+      <span id="status" class="status error">connecting…</span>
+      <span id="peers">1 connected</span>
+    </div>
+    <button id="share-btn">share</button>
+  </div>
+  <div id="editor"></div>
+
+  <script>
+    // Set session ID in toolbar
+    const path = window.location.pathname.replace(/^\//, '')
+    document.getElementById('session-id').textContent =
+      (path || 'new') .slice(0, 16)
+  </script>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
