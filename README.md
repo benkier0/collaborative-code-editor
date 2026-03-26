@@ -2,7 +2,7 @@
 
 A browser-based collaborative code editor where multiple users edit the same file simultaneously without conflicts.
 
-**Live demo:** [your-app.railway.app](https://collaborative-code-editor-production-acb7.up.railway.app/)
+**Live demo:** https://collaborative-code-editor-production-acb7.up.railway.app/
 
 Built from scratch to understand the hard parts: the OT algorithm, the client state machine, and the WebSocket session model. No CRDT library — the transform logic is handwritten and tested.
 
